@@ -9,11 +9,24 @@ type Equipment struct {
 	Feet  string
 }
 type Character struct {
-	Name      string
-	MaxHP     int
-	CurrentHP int
-	Equipment Equipment
-	Inventory []string
+	Name        string
+	MaxHP       int
+	CurrentHP   int
+	MaxMana     int
+	CurrentMana int
+	Equipment   Equipment
+	Inventory   []string
+}
+
+func InitCharacter(name string) Character {
+	return Character{
+		Name:        name,
+		MaxHP:       100,
+		CurrentHP:   100,
+		MaxMana:     50,
+		CurrentMana: 50,
+		Inventory:   []string{"Potion de vie"},
+	}
 }
 
 func removeSliceItem(slice []string, index int) []string {

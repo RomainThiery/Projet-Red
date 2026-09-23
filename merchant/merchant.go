@@ -14,6 +14,7 @@ type Item struct {
 func OpenMerchantMenu(w *wallet.Wallet, c *equipment.Character) {
 	items := []Item{
 		{Name: "Potion de vie", Price: 3},
+		{Name: "Potion de mana", Price: 3},
 		{Name: "Potion de poison", Price: 6},
 		{Name: "Livre de Sort : Boule de feu", Price: 25},
 		{Name: "Fourrure de Loup", Price: 4},
