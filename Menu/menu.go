@@ -3,6 +3,7 @@ package menu
 import (
 	"Projet-Red/blacksmith"
 	"Projet-Red/equipment"
+	"Projet-Red/fight"
 	"Projet-Red/merchant"
 	"Projet-Red/wallet"
 	"fmt"
@@ -25,6 +26,8 @@ func StartMainMenu(w *wallet.Wallet, c *equipment.Character) {
 		case 3:
 			c.OpenEquipmentMenu()
 		case 4:
+			fight.TrainingFight(c)
+		case 5:
 			fmt.Println("Au revoir !")
 			return
 		default:

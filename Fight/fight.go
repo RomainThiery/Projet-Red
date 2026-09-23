@@ -19,7 +19,7 @@ func GoblinPattern(g *monster.Monster, c *equipment.Character, turn int) {
 	fmt.Printf("%s inflige à %s %d dégâts\n", g.Name, c.Name, damage)
 	fmt.Printf("PV de %s : %d / %d\n", c.Name, c.CurrentHP, c.MaxHP)
 }
-func CharTurn(g *monster.Monster, c *equipment.Character) {
+func CharTurn(c *equipment.Character, g *monster.Monster) {
 	for {
 		fmt.Println("\n--- TOUR DU JOUEUR ---")
 		fmt.Println("1. Attaquer ")
