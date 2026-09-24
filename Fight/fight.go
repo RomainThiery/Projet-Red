@@ -152,7 +152,20 @@ func CharTurn(c *equipment.Character, g *monster.Monster) {
 }
 
 func TrainingFight(c *equipment.Character, w *wallet.Wallet) {
-	g := monster.InitGoblin()
+	var g monster.Monster
+	reward := 0
+
+	switch c.Stage {
+	case 1:
+		g = monster.InitGoblin()
+		reward = 20
+	case 2:
+		g = monster.InitOgre()
+		reward = 50
+	case 2:
+		g = monster.InitDragon()
+		reward = 100
+	}
 	turn := 1
 
 	fmt.Printf("\n⚔️ --- COMBAT CONTRE %s --- ⚔️\n", g.Name)
@@ -164,7 +177,7 @@ func TrainingFight(c *equipment.Character, w *wallet.Wallet) {
 
 		if g.CurrentHP <= 0 {
 			fmt.Printf("\n🎉 Victoire ! Tu as vaincu %s !\n", g.Name)
-			w.AddGold(20)
+			w.AddGold(reward)
 			fmt.Println("Tu as récupérer 20 pièce d'or ! ")
 			c.CurrentHP = c.MaxHP
 			c.CurrentMana = c.MaxMana

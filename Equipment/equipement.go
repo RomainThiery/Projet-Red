@@ -16,6 +16,7 @@ type Character struct {
 	CurrentMana int
 	Equipment   Equipment
 	Inventory   []string
+	Stage       int
 }
 
 func InitCharacter(name string) Character {
@@ -26,6 +27,7 @@ func InitCharacter(name string) Character {
 		MaxMana:     100,
 		CurrentMana: 100,
 		Inventory:   []string{"Potion de vie"},
+		Stage:       1,
 	}
 }
 
