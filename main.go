@@ -9,9 +9,11 @@ import (
 func main() {
 	myWallet := wallet.Wallet{GoldCoins: 100}
 	player := equipment.Character{
-		Name:      "Héros",
-		MaxHP:     100,
-		CurrentHP: 100,
+		Name:        "Héros",
+		MaxHP:       100,
+		MaxMana:     100,
+		CurrentMana: 100,
+		CurrentHP:   100,
 	}
 	menu.StartMainMenu(&myWallet, &player)
 }

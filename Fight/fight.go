@@ -3,6 +3,7 @@ package fight
 import (
 	"Projet-Red/equipment"
 	"Projet-Red/monster"
+	"Projet-Red/wallet"
 	"fmt"
 )
 
@@ -150,7 +151,7 @@ func CharTurn(c *equipment.Character, g *monster.Monster) {
 	}
 }
 
-func TrainingFight(c *equipment.Character) {
+func TrainingFight(c *equipment.Character, w *wallet.Wallet) {
 	g := monster.InitGoblin()
 	turn := 1
 
@@ -163,6 +164,8 @@ func TrainingFight(c *equipment.Character) {
 
 		if g.CurrentHP <= 0 {
 			fmt.Printf("\n🎉 Victoire ! Tu as vaincu %s !\n", g.Name)
+			w.AddGold(20)
+			fmt.Printf("💖 Tes PV et ton Mana ont été entièrement restaurés (%d/%d PV) !\n", c.CurrentHP, c.MaxHP)
 			break
 		}
 
