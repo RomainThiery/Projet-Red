@@ -7,12 +7,13 @@ import (
 	"Projet-Red/merchant"
 	"Projet-Red/wallet"
 	"fmt"
+	"os"
 )
 
 func StartMainMenu(w *wallet.Wallet, c *equipment.Character) {
 	for {
 		fmt.Println("\n=== 🏰 MENU PRINCIPAL 🏰 ===")
-		fmt.Println("1. Forgerie  2. Marchand  3. Inventaire  4. Quitter")
+		fmt.Println("1. Forgerie  2. Marchand  3. Inventaire  4. Aventure  5. Quitter")
 		fmt.Print("Choix : ")
 
 		var choice int
@@ -28,8 +29,8 @@ func StartMainMenu(w *wallet.Wallet, c *equipment.Character) {
 		case 4:
 			fight.TrainingFight(c, w)
 		case 5:
-			fmt.Println("Au revoir !")
-			return
+			fmt.Println("\n👋 Fermeture du jeu... À bientôt, aventurier !")
+			os.Exit(0)
 		default:
 			fmt.Println("Choix invalide.")
 		}
