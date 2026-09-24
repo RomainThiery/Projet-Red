@@ -6,7 +6,6 @@ import (
 	"fmt"
 )
 
-// Helper pour vérifier si le livre est présent dans l'inventaire
 func hasItem(inventory []string, itemName string) bool {
 	for _, item := range inventory {
 		if item == itemName {
@@ -33,7 +32,7 @@ func GoblinPattern(g *monster.Monster, c *equipment.Character, turn int) {
 func CharTurn(c *equipment.Character, g *monster.Monster) {
 	for {
 		fmt.Printf("\n--- TOUR DE %s (PV: %d/%d | Mana: %d/%d) ---\n", c.Name, c.CurrentHP, c.MaxHP, c.CurrentMana, c.MaxMana)
-		fmt.Println("1. Attaquer (Sorts)")
+		fmt.Println("1. Attaquer")
 		fmt.Println("2. Inventaire")
 		fmt.Print("Choix : ")
 
@@ -41,10 +40,9 @@ func CharTurn(c *equipment.Character, g *monster.Monster) {
 		fmt.Scanln(&choice)
 
 		if choice == 1 {
-			// Sous-menu des sorts
 			fmt.Println("\n--- CHOISIS TON SORT ---")
-			fmt.Println("1. Coup de poing (8 dégâts | Coût: 5 Mana)")
-			fmt.Println("2. Boule de feu (18 dégâts | Coût: 15 Mana - Requiert Livre de Sort)")
+			fmt.Println("1. Coup de poing (8 dégâts | Coût: 10 Mana)")
+			fmt.Println("2. Boule de feu (18 dégâts | Coût: 25 Mana - Requiert Livre de Sort)")
 			fmt.Println("0. Retour")
 			fmt.Print("Choix du sort : ")
 
@@ -56,8 +54,7 @@ func CharTurn(c *equipment.Character, g *monster.Monster) {
 			}
 
 			if spellChoice == 1 {
-				// Coup de poing : 8 dégâts
-				manaCost := 5
+				manaCost := 10
 				if c.CurrentMana < manaCost {
 					fmt.Println("❌ Mana insuffisant !")
 					continue
@@ -75,13 +72,12 @@ func CharTurn(c *equipment.Character, g *monster.Monster) {
 				break
 
 			} else if spellChoice == 2 {
-				// Boule de feu : 18 dégâts (nécessite le livre du marchand)
 				if !hasItem(c.Inventory, "Livre de Sort : Boule de feu") {
 					fmt.Println("❌ Tu dois posséder le 'Livre de Sort : Boule de feu' dans ton inventaire !")
 					continue
 				}
 
-				manaCost := 15
+				manaCost := 25
 				if c.CurrentMana < manaCost {
 					fmt.Println("❌ Mana insuffisant pour lancer Boule de feu !")
 					continue

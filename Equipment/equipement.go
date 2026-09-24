@@ -23,8 +23,8 @@ func InitCharacter(name string) Character {
 		Name:        name,
 		MaxHP:       100,
 		CurrentHP:   100,
-		MaxMana:     50,
-		CurrentMana: 50,
+		MaxMana:     100,
+		CurrentMana: 100,
 		Inventory:   []string{"Potion de vie"},
 	}
 }
