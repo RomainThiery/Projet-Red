@@ -26,7 +26,7 @@ func StartMainMenu(w *wallet.Wallet, c *equipment.Character) {
 		case 3:
 			c.OpenEquipmentMenu()
 		case 4:
-			fight.TrainingFight(c)
+			fight.TrainingFight(c, w)
 		case 5:
 			fmt.Println("Au revoir !")
 			return
