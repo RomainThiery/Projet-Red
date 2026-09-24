@@ -10,7 +10,7 @@ func (w Wallet) DisplayBalance() {
 	fmt.Printf("\033[33m Monnaie: %d pièces d'or \033[0m\n", w.GoldCoins)
 }
 
-func (w Wallet) AddGold(amount int) {
+func (w *Wallet) AddGold(amount int) {
 	if amount > 0 {
 		w.GoldCoins += amount
 		fmt.Printf("%d pièces d'or ajoutées.\n", amount)

@@ -165,6 +165,9 @@ func TrainingFight(c *equipment.Character, w *wallet.Wallet) {
 		if g.CurrentHP <= 0 {
 			fmt.Printf("\n🎉 Victoire ! Tu as vaincu %s !\n", g.Name)
 			w.AddGold(20)
+			fmt.Println("Tu as récupérer 20 pièce d'or ! ")
+			c.CurrentHP = c.MaxHP
+			c.CurrentMana = c.MaxMana
 			fmt.Printf("💖 Tes PV et ton Mana ont été entièrement restaurés (%d/%d PV) !\n", c.CurrentHP, c.MaxHP)
 			break
 		}
