@@ -42,8 +42,9 @@ func CharTurn(c *equipment.Character, g *monster.Monster) {
 
 		if choice == 1 {
 			fmt.Println("\n--- CHOISIS TON SORT ---")
-			fmt.Println("1. Coup de poing (8 dégâts | Coût: 10 Mana)")
-			fmt.Println("2. Boule de feu (18 dégâts | Coût: 25 Mana - Requiert Livre de Sort)")
+			fmt.Println("1. Coup de poing (10 dégâts | Coût: 10 Mana)")
+			fmt.Println("2. Boule de feu (20 dégâts | Coût: 25 Mana - Requiert Livre de Sort)")
+			fmt.Println("3. Attaque rapide (5 dégâts | Coût: 0 Mana)")
 			fmt.Println("0. Retour")
 			fmt.Print("Choix du sort : ")
 
@@ -62,7 +63,7 @@ func CharTurn(c *equipment.Character, g *monster.Monster) {
 				}
 
 				c.CurrentMana -= manaCost
-				damage := 8
+				damage := 10
 				g.CurrentHP -= damage
 				if g.CurrentHP < 0 {
 					g.CurrentHP = 0
@@ -85,7 +86,7 @@ func CharTurn(c *equipment.Character, g *monster.Monster) {
 				}
 
 				c.CurrentMana -= manaCost
-				damage := 18
+				damage := 20
 				g.CurrentHP -= damage
 				if g.CurrentHP < 0 {
 					g.CurrentHP = 0
@@ -94,6 +95,18 @@ func CharTurn(c *equipment.Character, g *monster.Monster) {
 				fmt.Printf("\n🔥 %s lance une Boule de feu et inflige %d dégâts à %s !\n", c.Name, damage, g.Name)
 				fmt.Printf("PV de %s : %d / %d\n", g.Name, g.CurrentHP, g.MaxHP)
 				break
+
+			} else if spellChoice == 3 {
+				damage := 5
+				g.CurrentHP -= damage
+				if g.CurrentHP < 0 {
+					g.CurrentHP = 0
+				}
+
+				fmt.Printf("\n⚡ %s lance une Attaque rapide et inflige %d dégâts à %s !\n", c.Name, damage, g.Name)
+				fmt.Printf("PV de %s : %d / %d\n", g.Name, g.CurrentHP, g.MaxHP)
+				break
+
 			} else {
 				fmt.Println("Sort invalide.")
 			}
@@ -152,6 +165,10 @@ func CharTurn(c *equipment.Character, g *monster.Monster) {
 }
 
 func TrainingFight(c *equipment.Character, w *wallet.Wallet) {
+	if c.CurrentHP <= 0 {
+		c.CurrentHP = c.MaxHP / 2
+		fmt.Printf("\n🩹 Tu te relèves péniblement... PV restaurés à 50%% (%d/%d PV) !\n", c.CurrentHP, c.MaxHP)
+	}
 	var g monster.Monster
 	reward := 0
 
@@ -178,10 +195,11 @@ func TrainingFight(c *equipment.Character, w *wallet.Wallet) {
 		if g.CurrentHP <= 0 {
 			fmt.Printf("\n🎉 Victoire ! Tu as vaincu %s !\n", g.Name)
 			w.AddGold(reward)
-			fmt.Println("Tu as récupérer 20 pièce d'or ! ")
+			fmt.Printf("Tu as récupéré %d pièces d'or !\n", reward)
 			c.CurrentHP = c.MaxHP
 			c.CurrentMana = c.MaxMana
 			fmt.Printf("💖 Tes PV et ton Mana ont été entièrement restaurés (%d/%d PV) !\n", c.CurrentHP, c.MaxHP)
+			c.Stage++
 			break
 		}
 
