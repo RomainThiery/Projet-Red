@@ -162,7 +162,7 @@ func TrainingFight(c *equipment.Character, w *wallet.Wallet) {
 	case 2:
 		g = monster.InitOgre()
 		reward = 50
-	case 2:
+	case 3:
 		g = monster.InitDragon()
 		reward = 100
 	}
